@@ -10,11 +10,22 @@ int main(int argc, char* argv[])
 
     Engine engine(width, height, "Game");
 
-    auto box = new Box("Simple cube", glm::vec3(0.0f, 0.0f, -25.0f), glm::vec3(0.0f, 0.0f, 0.0f));
+    auto box1 = new Box("Simple cube", glm::vec3(0.0f, -25.0f, 0.0f), glm::vec3(0.0f, 0.0f, 0.0f));
+    auto box2 = new Box("Simple cube", glm::vec3(0.0f, 0.0f, -25.0f), glm::vec3(0.0f, 0.0f, 0.0f));
+    auto box3 = new Box("Simple cube", glm::vec3(-25.0f, 0.0f, 0.0f), glm::vec3(0.0f, 0.0f, 0.0f));
+    auto box4 = new Box("Simple cube", glm::vec3(0.0f, 25.0f, 0.0f), glm::vec3(0.0f, 0.0f, 0.0f));
+    auto box5 = new Box("Simple cube", glm::vec3(0.0f, 0.0f, 25.0f), glm::vec3(0.0f, 0.0f, 0.0f));
+    auto box6 = new Box("Simple cube", glm::vec3(25.0f, 0.0f, 0.0f), glm::vec3(0.0f, 0.0f, 0.0f));
+
     auto camera = new Camera(width, height, glm::vec3(0.0f, 0.0f, 3.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 
     auto scene = new Scene();
-    scene->add(box);
+    scene->add(box1);
+    scene->add(box2);
+    scene->add(box3);
+    scene->add(box4);
+    scene->add(box5);
+    scene->add(box6);
 
     while (engine.isRunning())
     {
@@ -39,6 +50,10 @@ int main(int argc, char* argv[])
 
         if (engine.getKey(IK_A) == IK_PRESS)
             camera->move(LEFT, delta_time);
+
+        double x, y;
+        engine.getMoiseOffset(x, y);
+        camera->look(x, y);
 
         engine.tick();
         engine.render(camera, scene);

@@ -92,6 +92,8 @@ void Window::getMoiseOffset(double& x, double& y)
 {
     double curr_x, curr_y;
     glfwGetCursorPos(window, &curr_x, &curr_y);
-    x = curr_x - prev_x;
-    y = curr_y - prev_y;
+    x = (curr_x - prev_x) * (inverse_mouse_x ? -1 : 1);
+    y = (curr_y - prev_y) * (inverse_mouse_y ? -1 : 1);
+    prev_x = curr_x;
+    prev_y = curr_y;
 }

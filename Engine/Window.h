@@ -9,8 +9,11 @@ class Window
     int width;
     int height;
 
-    double prev_x;
-    double prev_y;
+    double prev_x = 0;
+    double prev_y = 0;
+    bool inverse_mouse_x = false;
+    bool inverse_mouse_y = true;
+
 public:
 
     Window(int screen_width, int screen_height, const char * title);
