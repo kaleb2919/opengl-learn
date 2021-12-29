@@ -9,7 +9,7 @@ MeshComponent::MeshComponent(const char* file_name, Material* material) :
 void MeshComponent::loadModel(const char* file_name)
 {
     Assimp::Importer importer;
-    const aiScene *scene = importer.ReadFile(file_name, aiProcess_Triangulate | aiProcess_FlipUVs);
+    const aiScene *scene = importer.ReadFile(file_name, aiProcess_Triangulate);
 
     if (!scene || scene->mFlags & AI_SCENE_FLAGS_INCOMPLETE || !scene->mRootNode)
     {
@@ -66,21 +66,21 @@ Mesh MeshComponent::processMesh(aiMesh* mesh, const aiScene* scene)
             vertex.texture_coordinate = glm::vec2(0.0f, 0.0f);
         }
 
-        // if(mesh->mTangents)
-        // {
-        //     vector.x = mesh->mTangents[i].x;
-        //     vector.y = mesh->mTangents[i].y;
-        //     vector.z = mesh->mTangents[i].z;
-        //     vertex.tangent = vector;
-        // }
-        //
-        // if(mesh->mBitangents)
-        // {
-        //     vector.x = mesh->mBitangents[i].x;
-        //     vector.y = mesh->mBitangents[i].y;
-        //     vector.z = mesh->mBitangents[i].z;
-        //     vertex.bi_tangent = vector;
-        // }
+        if(mesh->mTangents)
+        {
+            vector.x = mesh->mTangents[i].x;
+            vector.y = mesh->mTangents[i].y;
+            vector.z = mesh->mTangents[i].z;
+            vertex.tangent = vector;
+        }
+
+        if(mesh->mBitangents)
+        {
+            vector.x = mesh->mBitangents[i].x;
+            vector.y = mesh->mBitangents[i].y;
+            vector.z = mesh->mBitangents[i].z;
+            vertex.bi_tangent = vector;
+        }
 
         vertices.push_back(vertex);
     }

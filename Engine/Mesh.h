@@ -10,8 +10,8 @@ struct Vertex {
     glm::vec3 position;
     glm::vec3 normal;
     glm::vec2 texture_coordinate;
-    // glm::vec3 tangent;
-    // glm::vec3 bi_tangent;
+    glm::vec3 tangent;
+    glm::vec3 bi_tangent;
 };
 
 class Mesh
