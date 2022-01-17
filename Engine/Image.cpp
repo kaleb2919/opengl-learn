@@ -8,7 +8,7 @@ Image::Image(const char* file_name)
 
     stbi_set_flip_vertically_on_load(true);
 
-    unsigned char* data = stbi_load(file_name, &width, &height, &channels, STBI_rgb_alpha);
+    unsigned char* data = stbi_load(file_name, &width, &height, &channels, 0);
     if (data)
     {
         glCreateTextures(GL_TEXTURE_2D, 1, &descriptor);

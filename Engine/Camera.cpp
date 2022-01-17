@@ -1,7 +1,7 @@
 #include "Camera.h"
 
 Camera::Camera(float width, float height, glm::vec3 position, glm::vec3 world_up):
-    position(position), world_up(world_up)
+    position(position), world_up(world_up), width(width), height(height)
 {
     update();
 }
