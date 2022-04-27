@@ -3,11 +3,11 @@
 #include <assimp/Importer.hpp>
 #include <assimp/postprocess.h>
 #include <assimp/scene.h>
-#include <glad/glad.h>
 
 #include "Component.h"
 #include "Material.h"
 #include "Mesh.h"
+#include "Types.h"
 
 class MeshComponent : Component
 {
@@ -21,5 +21,5 @@ public:
 
     MeshComponent(const char* file_name, Material* material);
 
-    void draw(glm::mat4 projection, glm::mat4 view, glm::vec3 position);
+    void draw(glm::vec3 camera_position, glm::mat4 projection, glm::mat4 view, Transform transform, glm::vec3 light_position, glm::vec3 light_color);
 };

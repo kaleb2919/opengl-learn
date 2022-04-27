@@ -17,7 +17,7 @@ void Engine::render(Camera* camera, const Scene* scene)
 
     for (auto game_object : scene->game_objects)
     {
-        game_object->draw(projection, view);
+        game_object->draw(camera->getPosition(), projection, view, scene->light->getPosition(), scene->light->getColor());
     }
 
     window->swap();
@@ -58,4 +58,10 @@ float Engine::getDeltaTime()
     auto delta_time = current_time - last_time;
     last_time = current_time;
     return delta_time;
+}
+
+
+float Engine::getTime()
+{
+    return window->getTime();
 }

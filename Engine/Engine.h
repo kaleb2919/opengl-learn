@@ -16,6 +16,7 @@ public:
 
     void render(Camera* camera, const Scene* scene);
     float getDeltaTime();
+    float getTime();
     void tick();
     bool isRunning();
     void getMousePosition(double& x, double& y);

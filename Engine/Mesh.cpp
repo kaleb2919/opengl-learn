@@ -10,30 +10,36 @@ Mesh::Mesh(std::vector<Vertex> vertices, std::vector<GLuint> indices):
     setupMesh();
 }
 
-void Mesh::draw(Material* material, glm::mat4 projection, glm::mat4 view, glm::vec3 position)
+void Mesh::draw(glm::vec3 camera_position, Material* material, glm::mat4 projection, glm::mat4 view, Transform transform, glm::vec3 light_position, glm::vec3 light_color)
 {
     Shader* shader = material->getShader();
 
     shader->use();
     shader->setMat4("projection", projection);
     shader->setMat4("view", view);
-    shader->setMat4("model", glm::scale(glm::translate(glm::mat4(1.0f), position), glm::vec3(1.0f)));
+    shader->setMat4("model", glm::scale(glm::translate(glm::mat4(1.0f), transform.position), transform.scale));
+    shader->setVec3("view_position", camera_position);
+    shader->setVec3("light.position", light_position);
+    shader->setVec3("light.ambient", 0.05, 0.05, 0.05);
+    shader->setVec3("light.diffuse", light_color);
+    shader->setVec3("light.specular", 1.0f, 1.0f, 1.0f);
+    shader->setFloat("material.shininess", 64.0f);
 
     if (material->getBaseTexture())
     {
-        shader->setInt("base_texture", 0);
+        shader->setInt("material.base_texture", 0);
         glBindTextureUnit(0, material->getBaseTexture()->getDescriptor());
     }
 
     if (material->getNormalMap())
     {
-        shader->setInt("normal_map", 1);
+        shader->setInt("material.normal_map", 1);
         glBindTextureUnit(1, material->getNormalMap()->getDescriptor());
     }
 
     if (material->getRoughnessMap())
     {
-        shader->setInt("roughness_map", 2);
+        shader->setInt("material.roughness_map", 2);
         glBindTextureUnit(2, material->getRoughnessMap()->getDescriptor());
     }
 

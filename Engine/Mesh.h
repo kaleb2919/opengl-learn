@@ -4,7 +4,7 @@
 #include <glm/glm.hpp>
 
 #include "Material.h"
-#include "Shader.h"
+#include "Types.h"
 
 struct Vertex {
     glm::vec3 position;
@@ -25,5 +25,5 @@ public:
     std::vector<Vertex> vertices;
     std::vector<GLuint> indices;
 
-    void draw(Material* material, glm::mat4 projection, glm::mat4 view, glm::vec3 position);
+    void draw(glm::vec3 camera_position, Material* material, glm::mat4 projection, glm::mat4 view, Transform transform, glm::vec3 light_position, glm::vec3 light_color);
 };

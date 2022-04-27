@@ -28,7 +28,7 @@ class Camera
     float pitch_max = 89.0f;
     float pitch_min = -89.0f;
 
-    float movement_speed = 5.0f;
+    float movement_speed = 25.0f;
     float mouse_sensitivity = 0.05f;
 
 public:

@@ -163,9 +163,8 @@
     </CustomBuildStep>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Box.cpp" />
     <ClCompile Include="Game.cpp" />
-    <ClCompile Include="Gun.cpp" />
+    <ClCompile Include="Terrain.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Engine\Engine.vcxproj">
@@ -174,12 +173,14 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Box.h" />
-    <ClInclude Include="Gun.h" />
+    <ClInclude Include="MarchingCubesData.h" />
+    <ClInclude Include="Terrain.h" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="shader.frag" />
-    <Content Include="shader.vert" />
+    <Content Include="data\shader\light.frag" />
+    <Content Include="data\shader\light.vert" />
+    <Content Include="data\shader\shader.frag" />
+    <Content Include="data\shader\shader.vert" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

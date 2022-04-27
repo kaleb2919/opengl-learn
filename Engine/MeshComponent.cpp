@@ -1,5 +1,6 @@
 #include "MeshComponent.h"
 
+
 MeshComponent::MeshComponent(const char* file_name, Material* material) :
     material(material)
 {
@@ -96,10 +97,10 @@ Mesh MeshComponent::processMesh(aiMesh* mesh, const aiScene* scene)
     return Mesh(vertices, indices);
 }
 
-void MeshComponent::draw(glm::mat4 projection, glm::mat4 view, glm::vec3 position)
+void MeshComponent::draw(glm::vec3 camera_position, glm::mat4 projection, glm::mat4 view, Transform transform, glm::vec3 light_position, glm::vec3 light_color)
 {
     for (auto mesh : meshes)
     {
-        mesh.draw(material, projection, view, position);
+        mesh.draw(camera_position, material, projection, view, transform, light_position, light_color);
     }
 }
